@@ -1,0 +1,126 @@
+@import "./_variables";
+@import "@material/drawer/mdc-drawer";
+@import "@material/list/mdc-list";
+@import "@material/image-list/mdc-image-list";
+@import "@material/ripple/mixins";
+@import "@material/typography/mdc-typography";
+@import "@material/elevation/mdc-elevation";
+
+body {
+    display: flex;
+    margin: 0;
+}
+
+.shrine-logo-drawer {
+    display: block;
+    width: 7em;
+    padding: 40px 0 0;
+    margin: 0 auto;
+    fill: currentColor;
+}
+
+.shrine-title {
+    @include mdc-typography(headline5);
+
+    text-align: center;
+    margin: 5px auto;
+}
+
+.shrine-subtitle {
+    @include mdc-typography(overline);
+
+    text-align: center;
+    margin: 5px auto;
+}
+
+.shrine-drawer {
+    @include mdc-drawer-fill-color-accessible(primary);
+    // Drawer defaults to a higher z-index, but we aren't overlaying it over anything
+    @include mdc-drawer-z-index(0);
+
+    text-transform: uppercase;
+
+    .mdc-list {
+        margin: 70px 5px auto 5px;
+    }
+
+    .mdc-list-item {
+        border-radius: 6px;
+        justify-content: center;
+    }
+
+    // This needs 3-class specificity to override MDC Drawer styles
+    .mdc-list .mdc-list-item {
+        @include mdc-states-activated(#fff);
+    }
+}
+
+.shrine-select-item-divider {
+    display: block;
+    border-bottom-color: #EAA4A4;
+    border-bottom-width: 2px;
+    width: 50px;
+    position: relative;
+    top: -8px;
+}
+
+// This needs 2-class specificity to override MDC Drawer styles
+.shrine-drawer .shrine-select-item-divider {
+    margin: 0 auto;
+}
+
+.shrine-body {
+    @include mdc-elevation(4);
+
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    z-index: 0; // Elevate over the drawer
+    width: calc(100% - 256px);
+    height: 100%;
+
+    #contato {
+        #contatoHeader {
+            h1 {
+                text-align: center;
+            }
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #canais {
+            display: flex;
+            flex-direction: column;
+
+            .canais-labels {
+                @include mdc-typography(body2);
+
+                display: flex;
+                height: fit-content;
+                width: 30em;
+                margin: 0.5em auto;
+
+                img {
+                    height: 42px;
+                    width: 42px;
+                }
+
+                label {
+                    height: 50%;
+                    margin: auto 0;
+                    padding: 0.5em;
+                    width: 75px;
+                    font-weight: bold;
+                }
+
+                span {
+                    padding: 0.5em;
+                    height: 50%;
+                    margin: auto 0;
+                }
+            }
+        }
+    }
+}
